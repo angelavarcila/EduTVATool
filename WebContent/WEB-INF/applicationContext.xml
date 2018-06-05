@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	xmlns:context="http://www.springframework.org/schema/context"-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:jee="http://www.springframework.org/schema/jee"
+    xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+ 
+
+	<!-- HIBERNATE ACCESO A DATOS -->
+	<!--bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/EduTVA" />
+		<property name="resourceRef" value="true" />
+	</bean-->
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://localhost:5432/EduTVA"/>
+        <property name="username" value="postgres"/>
+        <property name="password" value="postgres"/>
+    </bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<!--property name="configLocation">
+            <value>classpath:hibernate.cfg.xml</value>
+        </property-->
+		<property name="mappingResources">
+			<list>
+				<!--Aquí van los HBM que me genera hibernate -->
+				<value>co/com/edutva/bd/Permiso.hbm.xml
+				</value>
+				<value>co/com/edutva/bd/Recurso.hbm.xml
+				</value>
+				<value>co/com/edutva/bd/DscrRecurso.hbm.xml
+				</value>
+				<value>co/com/edutva/bd/Rol.hbm.xml
+				</value>
+				<value>co/com/edutva/bd/RolPermiso.hbm.xml
+				</value>
+				<value>co/com/edutva/bd/Usuario.hbm.xml
+				</value>
+				<value>co/com/edutva/bd/UsuarioRol.hbm.xml
+				</value>
+				<value>co/com/edutva/bd/VrblSstm.hbm.xml
+				</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.hbm2ddl">update</prop>
+				
+				<!--PARA ORDENAR LOS UPDATES Y EVITAR INTERBLOQUEOS -->
+				<prop key="hibernate.order_updates">true</prop>
+				<prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory
+				</prop>
+				<prop key="hibernate.current_session_context_class">thread</prop>
+				<prop key="SetBigStringTryClob">true</prop>
+			</props>
+		</property>
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- DAO -->
+	<bean id="genericDAO" class="co.com.edutva.dao.GenericDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="resourceDAO" class="co.com.edutva.dao.ResourceDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="rolPermisoDAO" class="co.com.edutva.dao.RolPermisoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="usuarioDAO" class="co.com.edutva.dao.UsuarioDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+		
+	<bean id="usuarioRolDAO" class="co.com.edutva.dao.UsuarioRolDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="dscrRecursoDAO" class="co.com.edutva.dao.DscrRecursoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="vrblSstmDAO" class="co.com.edutva.dao.VrblSstmDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!-- MANAGER -->
+	<bean id="ingresoNgc" class="co.com.edutva.ngc.IngresoNgcImpl">
+		<property name="usuarioDAO">
+			<ref bean="usuarioDAO" />
+		</property>
+		<property name="usuarioRolDAO">
+			<ref bean="usuarioRolDAO" />
+		</property>
+		<property name="rolPermisoDAO">
+			<ref bean="rolPermisoDAO" />
+		</property>
+	</bean>
+	<bean id="resourceNgc" class="co.com.edutva.ngc.ResourceNgcImpl">
+		<property name="resourceDAO">
+			<ref bean="resourceDAO" />
+		</property>
+		<property name="dscrRecursoDAO">
+			<ref bean="dscrRecursoDAO" />
+		</property>
+	</bean>
+	<bean id="vrblSstmNgc" class="co.com.edutva.ngc.VrblSstmNgcImpl">
+		<property name="vrblSstmDAO">
+			<ref bean="vrblSstmDAO" />
+		</property>
+	</bean>
+
+	<!-- CONTROLADOR -->
+	<bean id="IngresoCtl" class="co.com.edutva.ctl.IngresoCtl" scope="prototype">
+		<property name="ingresoNgc">
+			<ref bean="ingresoNgc" />
+		</property>
+	</bean>
+	<bean id="InicioCtl" class="co.com.edutva.ctl.InicioCtl" scope="prototype">
+		<property name="ingresoNgc">
+			<ref bean="ingresoNgc" />
+		</property>
+	</bean>
+	<bean id="CrearContenidoCtl" class="co.com.edutva.ctl.CrearContenidoCtl"
+		scope="prototype">
+	</bean>
+	<bean id="DescribirContenidoCtl" class="co.com.edutva.ctl.DescribirContenidoCtl"
+		scope="prototype">
+		<property name="vrblSstmNgc">
+			<ref bean="vrblSstmNgc" />
+		</property>
+		<property name="resourceNgc">
+			<ref bean="resourceNgc" />
+		</property>	
+	</bean>
+	<bean id="CompartirContenidoCtl" class="co.com.edutva.ctl.CompartirContenidoCtl"
+		scope="prototype">
+	</bean>
+	<bean id="CambiarClaveCtl" class="co.com.edutva.ctl.CambiarClaveCtl"
+		scope="prototype">
+		<property name="ingresoNgc">
+			<ref bean="ingresoNgc" />
+		</property>
+	</bean>
+	<bean id="SegmentoCtl" class="co.com.edutva.ctl.SegmentoCtl"
+		scope="prototype">
+		<property name="vrblSstmNgc">
+			<ref bean="vrblSstmNgc" />
+		</property>
+	</bean>
+	<bean id="CreditoCtl" class="co.com.edutva.ctl.CreditoCtl"
+		scope="prototype">
+		<property name="vrblSstmNgc">
+			<ref bean="vrblSstmNgc" />
+		</property>
+	</bean>
+	<bean id="AnnotationCtl" class="co.com.edutva.ctl.AnnotationCtl"
+		scope="prototype">
+	</bean>
+	<bean id="ResourcesCtl" class="co.com.edutva.ctl.ResourcesCtl"
+		scope="prototype">
+		<property name="resourceNgc">
+			<ref bean="resourceNgc" />
+		</property>
+	</bean>
+
+</beans>

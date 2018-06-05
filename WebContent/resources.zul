@@ -1,0 +1,31 @@
+<?page title="Recursos disponibles para describir" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="winResources" title="Recursos disponibles para anotar" width="800px"
+		height="450px" border="normal" closable="true" apply="${ResourcesCtl}">
+		
+		<style>
+			z-row td:first-child { border-left-style:none; } .z-grid-odd
+			> .z-row-inner, .z-grid-odd > .z-cell { background:none; }
+			.z-row .z-row-inner, .z-row .z-cell {
+			border-bottom-color:#BDBDBD; border-bottom-style:solid;
+			border-bottom-width:1px; border-left-color:#BDBDBD;
+			border-left-style:solid; border-left-width:1px;
+			overflow:hidden; }
+		</style>
+	
+		<div width="100%" height="360px" style="overflow:auto;" align="center">
+		<radiogroup id="groupResources"/>
+			<grid id="gridResources" width="100%">
+				<columns>
+				<column/><column/><column/><column/>
+				</columns>
+				<rows id="rowsResources"/>
+			</grid>
+		</div>
+		<separator/>
+		<div width="100%" align="center">
+			<button id="btnAceptar" label="Aceptar" width="80px"/>
+			<button id="btnCancelar" label="Cancelar" width="80px"/>
+		</div>
+	</window>
+</zk>

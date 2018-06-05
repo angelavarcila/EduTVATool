@@ -1,0 +1,17 @@
+<?page title="Gracias!!" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="winEncuesta" title="Gracias!!" border="normal" width="400px" closable="true">
+
+<div align="center" width="100%">
+	<label value="Gracias por marcar un recurso por medio de EduTVA." style="text-align:justify; display:block; font-size:110%;" width="370px"/>
+	<separator/>
+	<label value="Con el objetivo de evaluar esta herramienta y los metadatos que reflejan las características educativas del recurso, por favor diríjase a la siguiente dirección para contestar una breve encuesta:" style="text-align:justify; display:block; font-size:110%;" width="370px"></label>
+	<separator/>
+	<a href="http://goo.gl/forms/WOvGVUKrlg" target="_blank" label="http://goo.gl/forms/WOvGVUKrlg" style="font-size:120%;" width="370px">
+		<attribute name="onClick"><![CDATA[
+						winEncuesta.detach();
+		]]></attribute>
+	</a>
+</div>
+</window>
+</zk>

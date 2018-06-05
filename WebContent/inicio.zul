@@ -1,0 +1,60 @@
+<?page title="EduTVA - inicio" contentType="text/html;charset=UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<?link rel="shortcut icon" type="image/x-icon" href="/imgs/edutva.ico"?>
+	<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+	
+	<window id="winInicio" border="none" apply="${InicioCtl}" height="100%" width="100%">
+	
+	<hbox spacing="0" width="100%" height="100%" align="start" style="background-color: #ADD8E6">
+			<toolbar id="toolbar" orient="vertical" width="172px" >
+				<label value="Usuario:" style="font-weight: bold; color:#424242"/>
+				<label id="lblNmbrUsr" value="Nombre usuario" style="font-weight: bold; color:#424242"/>
+				<space orient="horizontal"/>
+				<separator bar="true"/>
+				<button id="menuCrearContenido" visible="false"
+					label="Crear Contenido" width="162px" disabled="true"/>
+				<button id="menuDescribirContenido" visible="false"
+					label="Describir Contenido" width="162px"/>
+				<button id="menuCompartirContenido" visible="false"
+					label="Compartir Contenido" width="162px" disabled="true"/>
+			</toolbar>
+			<!--menubar id="menubar" orient="vertical" autodrop="true" width="200px">
+				<menuitem disabled="true" label="Usuario:" style="font-weight: bold;"></menuitem>
+				<menuitem id="menuLblNmbrUsr" disabled="true" label="Nombre usuario" style="font-weight: bold;"></menuitem>
+				<menuitem disabled="true" label=""></menuitem>
+				<menuitem id="menuCrearContenido" visible="false"
+					label="Crear Contenido" />
+				<menuitem id="menuDescribirContenido" visible="false"
+					label="Describir Contenido" />
+				<menuitem id="menuCompartirContenido" visible="false"
+					label="Compartir Contenido"/>
+			</menubar-->
+			
+			<div id="divBackground" height="100%" style="position:relative;" >
+				<image id="imgLogoU" src="/imgs/escudo.png" style="overflow:auto; position: absolute; bottom: 10px; right: 12px;"/>
+				<image id="imgLogo" src="/imgs/edutva_p.png" />
+				<div id="divVentanas" style="overflow:auto; position: absolute; top: 0px; left: 0px;"/>
+			</div>
+		</hbox>
+	
+	<!--vbox spacing="0" width="100%" height="100%" align="start" style="background-color: #ADD8E6">
+			<menubar id="menubar" orient="horizontal" autodrop="true" width="100%">
+				<menuitem id="menuCrearContenido" visible="false"
+					label="Crear Contenido" />
+				<menuitem id="menuDescribirContenido" visible="false"
+					label="Describir Contenido" />
+				<menuitem id="menuCompartirContenido" visible="false"
+					label="Compartir Contenido"/>
+				<menuitem id="menuLblNmbrUsr" disabled="true" label="Nombre usuario" style="font-weight: bold;"></menuitem>
+			</menubar>
+			<div id="divBackground" width="100%" height="100%" style="position:relative;" >
+				<image id="imgMenu" src="/imgs/menu_p.png" style="position: absolute; top: 0px; left: 0px;"/>
+				<image id="imgLogo" src="/imgs/edutva_p.png" />
+				<div id="divVentanas" style="overflow:auto; position: absolute; top: 0px; left: 0px;"/>
+			</div>
+		</vbox-->
+	</window>
+</zk>

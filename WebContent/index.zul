@@ -1,0 +1,99 @@
+<?page title="EduTVA" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="native">
+	<vlayout xmlns:c="client">
+
+		<style>
+			<!-- Estilos de la imagen de fondo -->
+			div.background { width: 100%; height: 100%; position: fixed;
+			} div.options { position: relative; padding-left: 60px;
+			#border: 1px solid #FFF; #width: 300px;
+			}
+
+			<!--  estilos de la ventana login -->
+			div.minimize { border: 1px solid #79858E; background:
+			#D3E1EC; position: absolute; opacity: 0.8; } div.loginGrid {
+			border: none; background: #D3E1EC; } td.loginCtl {
+			text-align: center; } td.loginCtl .z-label { color: red;
+			font-style: italic; }
+		</style>
+		<?link rel="shortcut icon" type="image/x-icon" href="/imgs/edutva.ico"?>	
+		<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+		<script type="text/javascript"
+			src="/effects/login_effect/jquery-ui-1.10.3.custom.min.js" />
+		<script type="text/javascript"
+			src="/effects/login_effect/customized_effect.js" />
+
+		<div sclass="background">
+			<image src="/imgs/fondoPrincipal.jpg" width="100%"
+				height="100%" />
+		</div>
+		<separator height="290px" />
+
+		<window id="winIngreso" apply="${IngresoCtl}" width="300px"
+			title="Bienvenidos a EduTVA" position="center" mode="overlapped"
+			visible="true" minimizable="false" border='normal'>
+			<attribute name="onMinimize">
+				<![CDATA[
+					if (self.isMinimized())
+						Clients.evalJavaScript("loginSuccess("
+								+ event.getLeft().replace("px", "") + ","
+								+ event.getTop().replace("px", "") + ")");
+				]]>
+			</attribute>
+
+			<grid width="100%">
+				<columns width="100%">
+					<column width="40%" />
+					<column width="60%" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Usuario" />
+						<textbox id="txtUsuario" tabindex="1" value=""
+							width="100%" />
+					</row>
+					<row>
+						<label value="Clave" />
+						<textbox id="txtClave" type="password"
+							tabindex="1" width="100%" />
+					</row>
+					<row>
+						<cell colspan="2" align="center">
+							<vlayout>
+								<button id="btnAceptarLogin"
+									label="Entrar" tabindex="1" width="100px" />
+								<label id="mensajeValidacion"
+									visible="false" />
+							</vlayout>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</window>
+
+
+		<separator height="200px" />
+
+		<div sclass="options" align="left" visible="true">
+
+			<vbox visible="true">
+				<separator />
+				<separator />
+				<a id="aRecuperarPassword" label="Recuperar Clave"
+					image="/imgs/arrow-next-gray.png"
+					style="color: black; font-weight: bold;"
+					tooltiptext="Recuperar el Password de Acceso al Sistema" />
+				<separator />
+				<a id="aCambiarPassword" label="Cambiar Clave"
+					image="/imgs/arrow-next-gray.png"
+					style="color: black; font-weight: bold;"
+					tooltiptext="Cambiar el Password de Acceso al Sistema" />
+				<separator />
+				<separator />
+			</vbox>
+
+		</div>
+
+	</vlayout>
+</zk>

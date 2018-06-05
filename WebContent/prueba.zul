@@ -1,0 +1,6 @@
+<?page title="esto es una prueba" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="esto es una prueba" border="normal">
+New Content Here!
+</window>
+</zk>

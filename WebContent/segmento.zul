@@ -1,0 +1,433 @@
+<?page title="Descripción del segmento" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="winSegmento" title="Nuevo segmento educativo" border="normal" minimizable="false" apply="${SegmentoCtl}"
+		closable="true" width="550px" height="600px">
+		
+		<style>
+			.z-textbox[disabled], .z-decimalbox[disabled],
+			.z-intbox[disabled], .z-longbox[disabled],
+			.z-doublebox[disabled] { background:#F0F0F0 !important;
+			color:#000000 !important; cursor:default !important;
+			opacity:0.6; }
+		</style>
+		<div id="divPrincipal" style="overflow:auto;" height="550px">
+			<grid id="gridView" visible="false">
+				<columns>
+					<column width="20%"></column>
+					<column width="80%"></column>
+				</columns>
+				<rows>
+					<row tooltiptext="Título del segmento">
+						<label value="Título:" />
+						<textbox id="txtViewTituloSgmt" width="100%"
+							disabled="true" />
+					</row>
+					<row tooltiptext="Tiempo inicial del segmento">
+						<label value="Tiempo inicial:" />
+						<textbox id="txtViewTiempoInicial" width="100%"
+							disabled="true" />	
+					</row>
+					<row tooltiptext="Tiempo final del segmento">
+						<label value="Tiempo final: " />
+						<textbox id="txtViewTiempoFinal" width="100%"
+							disabled="true" />	
+					</row>
+					<row tooltiptext="Resumen del contenido del segmento">
+						<label value="Sinopsis: " />
+						<textbox id="txtViewDescrSgmt" width="100%" disabled="true" rows="4"/>
+					</row>
+					<row tooltiptext="Palabras clave relacionadas con el contenido del segmento">
+						<label value="Palabras clave:"/>
+						<textbox id="txtViewPalabrasClave" width="100%" disabled="true"/>
+					</row>
+					<row tooltiptext="Clasificación del segmento de acuerdo a su tema general">
+						<label value="Género:"/>
+						<textbox id="txtViewGenreSgmt" width="100%" disabled="true" rows="4"/>
+					</row>
+					<row>
+						<label
+							value="Tipo de interactividad: " />
+						<textbox id="txtViewTipoInteractividadSgmt" width="100%" disabled="true"/>
+					</row>
+					<row>
+						<label
+							value="Tipo de recurso:" />
+						<textbox id="txtViewTipoRecursoSgmt" width="100%" disabled="true"/>
+					</row>		
+					<row>
+						<label
+							value="Uso educativo:" />
+						<textbox id="txtViewEducationalUse" width="100%" disabled="true"/>
+					</row>
+					<row>
+						<label
+							value="Contexto:" />
+						<textbox id="txtViewEducationalContext" width="100%" disabled="true"/>
+					</row>	
+					<row>
+						<label
+							value="Rol del ussuario objetivo" />
+						<textbox id="txtViewEducationalRole" width="100%" disabled="true"/>
+					</row>
+					<row>
+						<label
+							value="Rango de edad típico:" />
+						<textbox id="txtViewAgeRange" width="100%" disabled="true"/>
+					</row>	
+					<row>
+						<label
+							value="Idioma:" />
+						<textbox id="txtViewLanguage" width="100%" disabled="true"/>
+					</row>			
+					<row>
+						<label
+							value="Anotaciones: " />
+						<listbox id="lstbxViewAnnotations" width="100%" disabled="true" rows="4">
+						</listbox>
+				
+					</row>		
+					<row>
+						<label value="Competencias: " />
+						<textbox id="txtViewAbilitySgmt" width="100%" disabled="true" rows="4"/>
+					</row>
+				</rows>
+			</grid>
+			
+			<grid id="gridCreate" visible="false">
+				<columns>
+					<column width="30%"></column>
+					<column width="70%"></column>
+				</columns>
+				<rows>
+					<row tooltiptext="Título del segmento">
+						<div>
+							<label value="*" style="color:red" />
+							<label value="Título:" />
+						</div>
+						<textbox id="txtTituloSgmt" width="100%"></textbox>
+					</row>
+					<row tooltiptext="Tiempo inicial del segmento HH(horas):MM(minutos):SS(segundos)">
+						<div>
+							<label value="*" style="color:red" />
+							<label value="Tiempo inicial:" />
+						</div>
+						<grid width="100%">
+							<columns>
+								<column width="40px" />
+								<column />
+								<column width="40px" />
+								<column />
+								<column width="40px" />
+								<column />
+							</columns>
+							<rows>
+								<row>
+									<label value="HH: " />
+									<intbox id="ibxInicioSgmtH"
+										width="100%" tooltiptext="Horas"/>
+									<label value="MM: " />
+									<intbox id="ibxInicioSgmtM"
+										width="100%" tooltiptext="Minutos"/>
+									<label value="SS: " />
+									<intbox id="ibxInicioSgmtS"
+										width="100%" tooltiptext="Segundos"/>
+								</row>
+							</rows>
+						</grid>
+					</row>
+					<row tooltiptext="Tiempo final del segmento HH(horas):MM(minutos):SS(segundos)">
+						<label value="Tiempo final: " />
+						<grid width="100%">
+							<columns>
+								<column width="40px" />
+								<column />
+								<column width="40px" />
+								<column />
+								<column width="40px" />
+								<column />
+							</columns>
+							<rows>
+								<row>
+									<label value="HH: " />
+									<intbox id="ibxFinSgmtH" width="100%" tooltiptext="Horas"/>
+									<label value="MM: " />
+									<intbox id="ibxFinSgmtM" width="100%" tooltiptext="Minutos"/>
+									<label value="SS: " />
+									<intbox id="ibxFinSgmtS" width="100%" tooltiptext="Segundos"/>
+								</row>
+							</rows>
+						</grid>
+					</row>
+					<row tooltiptext="Resumen del contenido del segmento">
+						<div>
+							<label value="*" style="color:red" />
+							<label value="Sinopsis: " />
+						</div>
+						<textbox id="txtDescrSgmt" width="100%"
+							rows="4">
+						</textbox>
+					</row>
+					<row tooltiptext="Ingrese las palabras clave en orden de importancia. Recuerde que una palabra clave puede ser una palabra simple o una frase compuesta por varias palabras">
+						<div>
+							<label value="*" style="color:red" />
+							<label value="Palabras clave: "/>
+						</div>
+						<hbox>
+							<grid id="gridPalabrasClaveSgmt">
+								<columns>
+									<column></column>
+									<column></column>
+									<column></column>
+								</columns>
+							</grid>
+							<grid width="70px">
+								<columns>
+									<column></column>
+								</columns>
+								<rows>
+									<row>
+										<hbox align="center">
+											<toolbarbutton
+												id="btnAgregarFilaPalabrasClaveSgmt" image="/imgs/addR.png"
+												tooltiptext="Agregar más campos para ingresar palabras clave" />
+											<toolbarbutton
+												id="btnEliminarFilaPalabrasClaveSgmt"
+												image="/imgs/removeR.png"
+												tooltiptext="Eliminar la última fila de ingreso de palabras clave" />
+										</hbox>
+									</row>
+								</rows>
+							</grid>
+						</hbox>
+					</row>
+					<row tooltiptext="Puede seleccionar más de un género para el segmento. Recuerde que el género es la clasificación del segmento de acuerdo a su tema general">
+						<label value="Género:"/>
+						<tree id="treesGenreSgmt" rows="9" multiple="true"
+							checkmark="true">
+						</tree>
+					</row>
+				</rows>
+			</grid>
+			
+			<!-- Elementos educativos -->
+			<groupbox id="grpMetadataEduResource" open="false" visible="false">
+				<caption label="Recurso educativo" image="/imgs/arrow_down.png" />
+				<grid>
+					<columns>
+						<column width="30%"></column>
+						<column width="70%"></column>
+					</columns>
+					<rows>
+						<row
+							tooltiptext="Modo de aprendizaje soportado por el segmento">
+							<div>
+								<label value="*"
+									style="color:red" />
+								<label
+									value="Tipo de interactividad: " />
+							</div>
+							<combobox
+								id="cbxTipoInteractividad" width="100%">
+							</combobox>
+						</row>
+						<row
+							tooltiptext="Los tipos predominantes que caracterizan el segmento desde el punto de vista educativo">
+							<div>
+								<label value="*"
+									style="color:red" />
+								<label
+									value="Tipo de recurso: " />
+							</div>
+							<bandbox id="cbxTipoRecurso"
+								width="100%">
+								<bandpopup>
+									<listbox width="400px"
+										id="lstbxTipoRecurso" multiple="true" checkmark="true" rows="8">
+										<listhead>
+											<listheader label="" width="40px"/>
+											<listheader label="Tipo" />
+										</listhead>
+									</listbox>
+								</bandpopup>
+							</bandbox>
+						</row>
+						<row tooltiptext="Es el propósito educativo del segmento e indica el uso que se le puede dar dentro de un proceso educativo. Por ejemplo:  En un segmneto de un capítulo de Art Attack enseña cómo realizar un dibujo con profundidad invitando al televidente a realizar el dibujo. El uso educativo de este segmento puede ser: tarea o actividad">
+							<div>
+								<label value="*"
+									style="color:red" />
+								<label
+									value="Uso educativo: " />
+							</div>
+							<textbox
+								id="txtEducationalUse" width="100%">
+							</textbox>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<groupbox id="grpMetadataEduContext" open="false" visible="false">
+				<caption label="Contexto educativo" image="/imgs/arrow_down.png" />
+				<grid>
+					<columns>
+						<column width="30%"></column>
+						<column width="70%"></column>
+					</columns>
+					<rows>
+						<row
+							tooltiptext="Entornos de una secuencia educativa en los que el segmento puede ser utilizado">
+							<div>
+								<label value="*"
+									style="color:red" />
+								<label
+									value="Contexto: " />
+							</div>
+							<listbox width="400px"
+								id="lstbxEducationalContext" multiple="true" checkmark="true" rows="5">
+								<listhead>
+									<listheader label="" width="40px"/>
+									<listheader label="Contextos" />
+								</listhead>
+							</listbox>
+							<!--tree id="treeEducationalContext" rows="6" multiple="true" checkmark="true">
+							</tree-->
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<groupbox id="grpMetadataEduAudience" open="false" visible="false">
+				<caption label="Audiencia objetivo" image="/imgs/arrow_down.png" />
+				<grid>
+					<columns>
+						<column width="30%"></column>
+						<column width="70%"></column>
+					</columns>
+					<rows>
+						<row>
+							<div tooltiptext="Usuario(s) principal(es) para el(los) que ha sido creado el segmento. Puede seleccionar más de un rol">
+								<label value="*"
+									style="color:red" />
+								<label
+									value="Rol del usuario objetivo: " />
+							</div>
+							<bandbox id="cbxEducationalRole"
+								width="100%">
+								<bandpopup>
+									<listbox width="400px"
+										id="lstbxEducationalRole" multiple="true" checkmark="true" rows="5">
+										<listhead>
+											<listheader label="" width="40px"/>
+											<listheader label="Tipo" />
+										</listhead>
+									</listbox>
+								</bandpopup>
+							</bandbox>
+						</row>
+						<row tooltiptext="Grupos de edades de la audiencia objetivo del segmento. Puede seleccionar más de un rango de edad">
+							<div>
+								<label value="*"
+									style="color:red" />
+								<label
+									value="Rango de edad típico: " />
+							</div>
+							<tree id="treeAgeRange"
+								rows="5" multiple="true" checkmark="true">
+							</tree>
+						</row>
+						<row tooltiptext="Idioma de la audiencia objetivo del segmento. Puede seleccionar más de un idioma">
+							<div>
+								<label value="*"
+									style="color:red" />
+								<label
+									value="Idioma: " />
+							</div>
+							<bandbox id="cbxEduIdioma"
+							width="100%">
+							<bandpopup>
+								<listbox
+									id="lstbxEduIdiomas" mold="paging" autopaging="true"
+									width="400px" multiple="true" checkmark="true" rows="7">
+									<auxhead>
+										<auxheader colspan="3" align="center">
+											<image src="/imgs/funnel.png" />
+  											<textbox id="txtEduFiltroIdiomas" instant="true" width="150px"/>
+										</auxheader>
+									</auxhead>
+									<listhead>
+										<listheader 
+											label="Identificación" />
+										<listheader id="lsthdEduNmbrIdioma"
+											label="Nombre" image="/imgs/sort-ascend.png"/>
+										<listheader id="lsthdEduPaisIdioma"
+											label="País"/>
+									</listhead>
+								</listbox>
+							</bandpopup> 
+						</bandbox>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<groupbox id="grpMetadataEduAnotation" open="false" visible="false">
+				<caption label="Anotaciones" image="/imgs/arrow_down.png" />
+				<grid>
+					<columns>
+						<column width="30%"></column>
+						<column width="70%"></column>
+					</columns>
+					<rows>
+						<row tooltiptext="Comentarios relacionados con el segmento que permiten establecer sugerencias de uso, descripciones del segmento desde el punto de vista educativo, temas educativos tratados, etc.">
+							<div>
+								<label value="*"
+									style="color:red" />
+								<label
+									value="Anotaciones: " />
+							</div>
+							<vbox align="center" width="100%">
+								<textbox id="txtAnnotation" multiline="true" rows="2" width="330px"></textbox>		
+								<button id="btnAddAnnotation" label="Agregar anotación"></button>			
+								<listbox id="lstbxAnnotations" rows="5" checkmark="true" multiple="true" visible="false">
+									<listhead>
+									<listheader>
+									<!--toolbarbutton
+										id="btnAddAnnotation" image="/imgs/add24x24.png"
+										tooltiptext="Crear anotación" height="27px" width="29px" /-->
+									<toolbarbutton
+										id="btnDeleteAnnotation" image="/imgs/remove24x24.png"
+										tooltiptext="Eliminar anotación" height="27px" width="29px" />
+									</listheader>
+									</listhead>
+								</listbox>
+							</vbox>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<groupbox id="grpMetadataEduResults" open="false" visible="false">
+				<caption label="Resultados" image="/imgs/arrow_down.png" />
+				<grid>
+					<columns>
+						<column width="30%"></column>
+						<column width="70%"></column>
+					</columns>
+					<rows>
+						<row tooltiptext="Habilidades de pensamiento y objetivos logrados por medio de la interacción con el segmento. Por ejemplo: Después de visualizar un segmento de un capítulo de Mentes Brillantes donde se narra la historia de la creación de la primera bomba nuclear durante la segunda guerra mundial centrándose en los esfuerzos paralelos de Robert Oppenheimer y Werner Heisenberg, el estudiantes podrá RECORDAR la historia y los personajes implicados, además de RESUMIR lo hechos.">
+							<div>
+								<label value="*"
+									style="color:red" />
+								<label
+									value="Competencias alcanzadas: " />
+							</div>
+							<tree id="treeAbility"
+								rows="6" multiple="true" checkmark="true">
+							</tree>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>	
+			<div width="100%" align="center">
+				<button id="btnAceptar" label="Aceptar" width="80px"/>
+				<button id="btnCancelar" label="Cancelar" width="80px"/>
+			</div>
+		</div>
+	</window>
+</zk>

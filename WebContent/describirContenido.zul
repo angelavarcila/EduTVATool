@@ -1,0 +1,600 @@
+<?page title="EduTVA - Describir contenidos" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="winDescribirContenido" border="normal" closable="true"
+		minimizable="false" apply="${DescribirContenidoCtl}">
+		<caption width="100%">
+			<toolbarbutton id="btnTerminar" image="/imgs/ok.png"
+				tooltiptext="Terminar descripción" height="35px" width="37px" />
+			<toolbarbutton id="btnAyuda" image="/imgs/ayuda.png"
+				tooltiptext="Ayuda" height="35px" width="37px" />
+		</caption>
+
+		<style>
+			div.z-grid { border:none; } tr.z-row td.z-row-inner,
+			tr.z-row .z-cell { border-style:none; padding: 0; }
+			.z-grid-odd > .z-row-inner, .z-grid-odd > .z-cell {
+			background:none; }
+
+.z-caption.customIcon .z-caption-content {
+    width: 89%;
+}
+ 
+.z-caption.customIcon .open-true {
+  background: url("/EduTVA/imgs/arrow_up.png") no-repeat right 0;
+  height: 16px;  
+  padding-right: 20px;
+  font-weight: bold;
+  float: right;
+} 
+.z-caption.customIcon .open-false {
+   background: url("/EduTVA/imgs/arrow_down.png") no-repeat right 0;
+  height: 16px;  
+  padding-right: 20px;
+  font-weight: bold;
+  float: right;
+		</style>
+
+
+		<hbox>
+			<div id="divFormularios" style="overflow:auto;">
+				<vbox>
+					<groupbox id="grpFormGnrl" closable="true" mold="3d"
+						open="true">
+						<attribute name="onOpen">
+                   			<![CDATA[arrowGrpFormGnrl.setSclass("open-" + self.isOpen());]]>
+               			</attribute>
+						<caption image="/imgs/write.png"
+							label="Descripción general del recurso"
+							style="font-weight:bold;" sclass="customIcon">
+							<toolbarbutton image="/imgs/info.png" tooltiptext="Información de campos obligatorios">
+								<attribute name="onClick"><![CDATA[
+									Messagebox.show("Para realizar la descripción del recurso de una manera adecuada, recuerde que debe ingresar todos los campos obligatorios de esta sección:\n\n-Título\n-Sinopsis\n-Palabras clave\n-Género\n-Créditos",
+									"Descripción general del recurso", Messagebox.OK, Messagebox.INFORMATION);
+								]]></attribute>
+							</toolbarbutton>
+							<span id="arrowGrpFormGnrl" class="open-true" />
+						</caption>
+						<div id="divFormGnrl" style="overflow:auto;">
+							<grid>
+								<columns>
+									<column width="30%"></column>
+									<column width="70%"></column>
+								</columns>
+								<rows>
+									<row tooltiptext="Título del recurso">
+										<div>
+											<label value="*"
+												style="color:red" />
+											<label value="Título:"/>
+										</div>
+										<textbox id="txtTitulo"	width="100%">
+										</textbox>
+									</row>
+									<row tooltiptext="Versión corta del título original que define cómo debe ser cortado para propósitos de presentación" width="100%">
+										<label value="Título corto:" />
+										<textbox id="txtTituloCorto" width="100%">
+										</textbox>
+									</row>
+									<!--row>
+										<label value="Media title:" />
+										<textbox id="txtMediaTitulo"
+										width="100%">
+										</textbox>
+									</row-->
+									<!--row>
+										<label
+											value="Información promocional:" />
+										<textbox id="txtInfPromo"
+											width="100%"
+											tooltiptext="Descripción textual que contenga información promocional para el recurso">
+										</textbox>
+									</row-->
+									<row tooltiptext="Resumen del contenido del recurso">
+										<div >
+											<label value="*"
+												style="color:red" />
+											<label
+												value="Sinopsis: "/>
+										</div>
+										<textbox id="txtDescr"
+											width="100%" rows="4">
+										</textbox>
+									</row>
+									<row tooltiptext="Ingrese las palabras clave en orden de importancia. Recuerde que una palabra clave puede ser una palabra simple o una frase compuesta por varias palabras">
+										<div>
+											<label value="*"
+												style="color:red" />
+											<label value="Palabras clave: "/>
+										</div>
+										<hbox>
+											<grid id="gridPalabrasClave">
+												<columns>
+													<column></column>
+													<column></column>
+													<column></column>
+												</columns>
+											</grid>
+											<grid width="70px">
+												<columns>
+													<column></column>
+												</columns>	
+											<rows>
+											<row>
+											<hbox align="center">
+												<toolbarbutton
+													id="btnAgregarFilaPalabrasClave" image="/imgs/addR.png"
+													tooltiptext="Agregar más campos para ingresar palabras clave" />
+												<toolbarbutton
+													id="btnEliminarFilaPalabrasClave" image="/imgs/removeR.png"
+													tooltiptext="Eliminar la última fila de ingreso de palabras clave" />
+											</hbox>
+											</row>
+											</rows>
+											</grid>
+										</hbox>
+									</row>
+									<row>
+										<div tooltiptext="Puede seleccionar más de un género para el recurso. Recuerde que el género es la clasificación del recurso de acuerdo a su tema general">
+											<label value="*"
+												style="color:red" />
+											<label value="Género:"/>
+										</div>
+										<tree id="treeGenre" rows="9" multiple="true" checkmark="true">
+										</tree>
+									</row>
+									<row tooltiptext="Idioma que se habla en el recurso audiovisual. Puede especificar más de un idioma hablado">
+										<label value="Idioma: " />
+										<bandbox id="cbxIdioma" 
+											width="100%">
+											<bandpopup>
+												<listbox
+													id="lstbxIdiomas" mold="paging" autopaging="true"
+													width="560px" multiple="true" checkmark="true" rows="7">
+													<auxhead>
+            											<auxheader colspan="3" align="center">
+            												<image src="/imgs/funnel.png" />
+               												<textbox id="txtFiltroIdiomas" instant="true" width="150px"/>
+            											</auxheader>
+        											</auxhead>
+													<listhead>
+														<listheader 
+															label="Identificación" />
+														<listheader id="lsthdNmbrIdioma"
+															label="Nombre" image="/imgs/sort-ascend.png"/>
+														<listheader id="lsthdPaisIdioma"
+															label="País"/>
+													</listhead>
+												</listbox>
+											</bandpopup> 
+										</bandbox>
+									</row>
+									<row tooltiptext="Fecha en la que fue producido el recurso audiovisual">
+										<label
+											value="Fecha de producción:" />
+										<datebox id="dbxFechaProd"
+											width="100%">
+										</datebox>
+									</row>
+									<row tooltiptext="País en el que fue producido el recurso audiovisual">
+										<label
+											value="País de produccción:" />
+											<bandbox id="cbxProdCountry"
+											width="100%">
+											<bandpopup>
+												<listbox
+													id="lstbxProdCountry" mold="paging" autopaging="true"
+													width="550px" multiple="true" checkmark="true" rows="7">
+													<auxhead>
+														<auxheader colspan="2" align="center">
+															<image src="/imgs/funnel.png" />
+				  											<textbox id="txtFiltroCountry" instant="true" width="150px"/>
+														</auxheader>
+													</auxhead>
+													<listhead>
+														<listheader width="100px"
+															label="Código" />
+														<listheader 
+															label="País"/>
+													</listhead>
+												</listbox>
+											</bandpopup> 
+											</bandbox>
+										<!--textbox id="txtProdCountry"
+											width="100%">
+										</textbox-->
+									</row>
+									<row tooltiptext="Lugares geográficos que se ven representados en el recurso (por ejemplo: Colombia, Caño Cristales, Plaza de Cibeles, Torre Eiffel). Puede especificar más de uno">
+										<label value="Lugares representados:" />
+										<hbox>
+											<grid id="gridLugaresRepresentados">
+												<columns>
+													<column></column>
+													<column></column>
+													<column></column>
+												</columns>
+											</grid>
+											<grid width="70px">
+												<columns>
+													<column></column>
+												</columns>	
+											<rows>
+											<row>
+											<hbox align="center">
+												<toolbarbutton
+													id="btnAgregarFilaLugaresRepresentados" image="/imgs/addR.png"
+													tooltiptext="Agregar más campos para ingresar lugares representados" />
+												<toolbarbutton
+													id="btnEliminarFilaLugaresRepresentados" image="/imgs/removeR.png"
+													tooltiptext="Eliminar la última fila de ingreso de lugares representados" />
+											</hbox>
+											</row>
+											</rows>
+											</grid>
+										</hbox>
+									</row>
+									<row>
+										<label value="Sitios representados:" tooltiptext="Sitios que se ven representados en el recurso (por ejemplo: paisaje natural, río), en otras palabra, los tipos de lugares que se representan. Puede especificar más de uno"/>
+										<bandbox id="cbxSitiosRepresentados"
+											width="100%">
+											<bandpopup width="250px" height="200px">
+												<tree
+													id="treeSitiosRepresentados" rows="9"
+													multiple="true" checkmark="true" />
+											</bandpopup>
+										</bandbox>
+									</row>
+									<!--row tooltiptext="Epoca representada en el recurso (por ejemplo: año 2015)">
+									<label value="Epoca representada:"/>
+									<textbox width="100%" id="txtEpocaRepresentada"/>
+									</row-->
+									<!--row>
+										<label
+											value="Lugar y fecha de lanzamiento:" />
+										<textbox id="txtReleaseInformation"
+											width="100%">
+										</textbox>
+									</row-->
+									<row tooltiptext="Duración aproximada del recurso audiovisual HH(horas):MM(minutos):SS(segundos)">
+										<label value="Duración: " />
+										<grid width="100%">
+										<columns>
+										<column width="40px"/><column/><column width="40px"/><column/><column width="40px"/><column/>
+										</columns>
+										<rows>
+										<row>
+										<label value="HH: " />
+										<intbox id="ibxDurationH" width="100%" tooltiptext="Horas"/>
+										<label value="MM: " />
+										<intbox id="ibxDurationM" width="100%" tooltiptext="Minutos"/>
+										<label value="SS: " />
+										<intbox id="ibxDurationS" width="100%" tooltiptext="Segundos"/>
+										</row>
+										</rows>
+										</grid>
+									</row>
+									<row tooltiptext="Lista de créditos del recurso audiovisual (por ejemplo: actores, directores, etc.). Debe ingresar al menos un crédito">
+										<div>
+											<label value="*"
+												style="color:red" />
+											<label
+												value="Créditos:" />
+										</div>
+										<a id="aCredits" label="Editar lista de créditos"></a>
+									</row>
+								</rows>
+							</grid>
+						</div>
+					</groupbox>
+					<groupbox id="grpFormEdu" closable="true" mold="3d"
+						open="false">
+						<attribute name="onOpen">
+                   			<![CDATA[arrowGrpFormEdu.setSclass("open-" + self.isOpen());]]>
+               			</attribute>
+						<caption image="/imgs/books.png"
+							label="Características educativas del recurso"
+							style="font-weight:bold;" sclass="customIcon">
+							<toolbarbutton image="/imgs/info.png" tooltiptext="Información de campos obligatorios">
+								<attribute name="onClick"><![CDATA[
+									Messagebox.show("Para realizar la descripción del recurso de una manera adecuada, recuerde que debe ingresar todos los campos obligatorios de esta sección:\n\n-Tipo de interactividad\n-Tipo de recurso\n-Uso educativo\n-Contexto\n-Rol del usuario objetivo\n-Rango de edad típico\n-Idioma\n-Anotaciones\n-Competencias",
+									"Características educativas del recurso", Messagebox.OK, Messagebox.INFORMATION);
+								]]></attribute>
+							</toolbarbutton>
+							<span id="arrowGrpFormEdu" class="open-false" />
+						</caption>
+						<div id="divFormEdu" style="overflow:auto;">
+							<groupbox id="grpMetadataEduResource" open="false">
+								<caption label="Recurso educativo" image="/imgs/arrow_down.png" />
+								<grid>
+									<columns>
+										<column width="30%"></column>
+										<column width="70%"></column>
+									</columns>
+									<rows>
+										<row
+											tooltiptext="Modo de aprendizaje soportado por el recurso">
+											<div>
+												<label value="*"
+													style="color:red" />
+												<label
+													value="Tipo de interactividad: " />
+											</div>
+											<combobox
+												id="cbxTipoInteractividad" width="100%">
+											</combobox>
+										</row>
+										<row tooltiptext="Los tipos predominantes que caracterizan el recurso desde el punto de vista educativo. Por ejemplo: En un capítulo de la serie Mith Busters se realiza un experimento relacionado con la cancelación de momentos de dos fuerzas, por lo tanto el tipo de recurso es: experimento">
+											<div>
+												<label value="*"
+													style="color:red" />
+												<label
+													value="Tipo de recurso: " />
+											</div>
+											<bandbox id="cbxTipoRecurso"
+												width="100%">
+												<bandpopup>
+													<listbox width="400px"
+														id="lstbxTipoRecurso" multiple="true" checkmark="true" rows="8">
+														<listhead>
+															<listheader label="" width="40px"/>
+															<listheader label="Tipos" />
+														</listhead>
+													</listbox>
+												</bandpopup>
+											</bandbox>
+										</row>
+										<row tooltiptext="Es el propósito educativo del recurso audiovisual e indica el uso que se le puede dar al recurso dentro de un proceso educativo. Por ejemplo:  Un capítulo de Art Attack enseña cómo realizar un dibujo con profundidad invitando al televidente a realizar el dibujo. El uso educativo de este recurso podría ser: tarea o actividad">
+											<div>
+												<label value="*"
+													style="color:red" />
+												<label
+													value="Uso educativo: " />
+											</div>
+											<textbox
+												id="txtEducationalUse" width="100%">
+											</textbox>
+										</row>
+									</rows>
+								</grid>
+							</groupbox>
+							<groupbox id="grpMetadataEduContext" open="false">
+								<caption label="Contexto educativo" image="/imgs/arrow_down.png" />
+								<grid>
+									<columns>
+										<column width="30%"></column>
+										<column width="70%"></column>
+									</columns>
+									<rows>
+										<row tooltiptext="Entornos de una secuencia educativa en los que el recurso puede ser utilizado">
+											<div>
+												<label value="*"
+													style="color:red" />
+												<label
+													value="Contexto: " />
+											</div>
+											<listbox 
+												id="lstbxEducationalContext" multiple="true" checkmark="true" rows="5">
+												<listhead>
+													<listheader label="" width="40px"/>
+													<listheader label="Contextos" />
+												</listhead>
+											</listbox>
+											<!--tree id="treeEducationalContext" rows="6" multiple="true" checkmark="true">
+											</tree-->
+										</row>
+									</rows>
+								</grid>
+							</groupbox>
+							<groupbox id="grpMetadataEduAudience" open="false">
+								<caption label="Audiencia objetivo" image="/imgs/arrow_down.png" />
+								<grid>
+									<columns>
+										<column width="30%"></column>
+										<column width="70%"></column>
+									</columns>
+									<rows>
+										<row tooltiptext="Usuario(s) principal(es) para el(los) que ha sido creado el recurso. Puede seleccionar más de un rol">
+											<div>
+												<label value="*"
+													style="color:red" />
+												<label
+													value="Rol del usuario objetivo: " />
+											</div>
+											<bandbox id="cbxEducationalRole"
+												width="100%">
+												<bandpopup>
+													<listbox width="400px"
+														id="lstbxEducationalRole" multiple="true" checkmark="true" rows="5">
+														<listhead>
+															<listheader label="" width="40px"/>
+															<listheader label="Tipo" />
+														</listhead>
+													</listbox>
+												</bandpopup>
+											</bandbox>
+										</row>
+										<row>
+											<div tooltiptext="Grupos de edades de la audiencia objetivo. Puede seleccionar más de un rango de edad">
+												<label value="*"
+													style="color:red" />
+												<label
+													value="Rango de edad típico: " />
+											</div>
+											<tree id="treeAgeRange"
+												rows="5" multiple="true" checkmark="true">
+											</tree>
+										</row>
+										<row tooltiptext="Idioma de la audiencia objetivo. Puede seleccionar más de un idioma">
+											<div>
+												<label value="*"
+													style="color:red" />
+												<label
+													value="Idioma: " />
+											</div>
+											<bandbox id="cbxEduIdioma"
+											width="100%">
+											<bandpopup>
+												<listbox
+													id="lstbxEduIdiomas" mold="paging" autopaging="true"
+													width="550px" multiple="true" checkmark="true" rows="7">
+													<auxhead>
+            											<auxheader colspan="3" align="center">
+            												<image src="/imgs/funnel.png" />
+               												<textbox id="txtEduFiltroIdiomas" instant="true" width="150px"/>
+            											</auxheader>
+        											</auxhead>
+													<listhead>
+														<listheader 
+															label="Identificación" />
+														<listheader id="lsthdEduNmbrIdioma"
+															label="Nombre" image="/imgs/sort-ascend.png"/>
+														<listheader id="lsthdEduPaisIdioma"
+															label="País"/>
+													</listhead>
+												</listbox>
+											</bandpopup> 
+										</bandbox>
+										</row>
+									</rows>
+								</grid>
+							</groupbox>
+							<groupbox id="grpMetadataEduAnotation" open="false">
+								<caption label="Anotaciones" image="/imgs/arrow_down.png" />
+								<grid>
+									<columns>
+										<column width="30%"></column>
+										<column width="70%"></column>
+									</columns>
+									<rows>
+										<row tooltiptext="Comentarios relacionados con el recurso educativo que permiten establecer sugerencias de uso, descripciones del recurso desde el punto de vista educativo, temas educativos tratados, etc.">
+											<div>
+												<label value="*"
+													style="color:red" />
+												<label
+													value="Anotaciones: " />
+											</div>
+											<vbox align="center" width="100%">
+												<textbox id="txtAnnotation" multiline="true" rows="2" width="330px"></textbox>		
+												<button id="btnAddAnnotation" label="Agregar anotación"></button>			
+												<listbox id="lstbxAnnotations" rows="5" checkmark="true" multiple="false" visible="false">
+													<listhead>
+														<listheader>
+															<!--toolbarbutton
+																id="btnAddAnnotation" image="/imgs/add24x24.png"
+																tooltiptext="Crear anotación" height="27px" width="29px" /-->
+															<toolbarbutton
+																id="btnDeleteAnnotation" image="/imgs/remove24x24.png"
+																tooltiptext="Eliminar anotación" height="27px" width="29px" />
+															<label value="Anotaciones"></label>
+														</listheader>
+													</listhead>
+												</listbox>
+											</vbox>
+											<!--textbox id="txtDescrEdu" ??? esto??
+												width="100%" tooltiptext="Descripción educativa del recurso"
+												rows="4">
+											</textbox-->
+										</row>
+									</rows>
+								</grid>
+							</groupbox>
+							<groupbox id="grpMetadataEduResults" open="false">
+								<caption label="Resultados" image="/imgs/arrow_down.png" />
+								<grid>
+									<columns>
+										<column width="30%"></column>
+										<column width="70%"></column>
+									</columns>
+									<rows>
+										<row>
+											<div tooltiptext="Habilidades de pensamiento y objetivos logrados por medio de la interacción con el recurso. Por ejemplo: Después de visualizar un capítulo de Mentes Brillantes donde se narra la historia de la creación de la primera bomba nuclear durante la segunda guerra mundial centrándose en los esfuerzos paralelos de Robert Oppenheimer y Werner Heisenberg, el estudiantes podrá RECORDAR la historia y los personajes implicados, además de RESUMIR lo hechos.">
+												<label value="*"
+													style="color:red" />
+												<label
+													value="Competencias alcanzadas: " />
+											</div>
+											<tree id="treeAbility"
+												rows="6" multiple="true" checkmark="true">
+											</tree>
+										</row>
+									</rows>
+								</grid>
+							</groupbox>
+						</div>
+					</groupbox>
+					<groupbox id="grpSegmentos" closable="true" mold="3d"
+						open="false">
+						<attribute name="onOpen">
+                   			<![CDATA[arrowGrpSegmentos.setSclass("open-" + self.isOpen());]]>
+               			</attribute>
+						<caption image="/imgs/component.png"
+							label="Segmentos educativos" style="font-weight:bold;" sclass="customIcon">
+							<toolbarbutton image="/imgs/info.png" tooltiptext="Información de campos obligatorios">
+								<attribute name="onClick"><![CDATA[
+									Messagebox.show("No es obligatorio crear segmentos para realizar la descripción del recurso. Sin embargo, recuerde que si desea crear uno o más segmentos debe ingresar todos los campos obligatorios para cada uno de ellos:\n\n-Título\n-Tiempo inicial\n-Sinopsis\n-Palabras clave\n-Tipo de interactividad\n-Tipo de recurso\n-Uso educativo\n-Contexto\n-Rol del usuario objetivo\n-Rango de edad típico\n-Idioma\n-Anotaciones\n-Competencias",
+									"Segmentos educativos", Messagebox.OK, Messagebox.INFORMATION);
+								]]></attribute>
+							</toolbarbutton>
+							<span id="arrowGrpSegmentos" class="open-false" />
+						</caption>
+						<div id="divSegmentos" style="overflow:auto;" >
+						<listbox id="lstbxSgmts" checkmark="true" multiple="true">
+							<auxhead>
+							<auxheader colspan="5">
+							<toolbarbutton id="btnAgregarSegmento"
+								image="/imgs/add24x24.png" tooltiptext="Nuevo segmento"
+								height="27px" width="29px" />
+							<toolbarbutton id="btnEliminarSegmento"
+								image="/imgs/remove24x24.png" tooltiptext="Eliminar segmento"
+								height="27px" width="29px" />
+							</auxheader>
+							</auxhead>
+							<listhead>
+								<listheader align="center" width="40px"/>
+								<listheader label="Nombre" align="center"/>
+								<listheader label="Tiempo inicial" align="center"/>
+								<listheader label="Tiempo final" align="center"/>
+								<listheader label="Descripción" align="center"/>
+							</listhead>
+						</listbox>
+						</div>
+					</groupbox>
+				</vbox>
+			</div>
+			<separator/>
+			<groupbox id="grpGrafico" closable="false"
+				style="border-style: none;">
+				<caption image="/imgs/video.png"
+					label="Visualización del recurso" style="font-weight:bold;">
+				</caption>
+				<div id="divGrafico" style="overflow:auto;">
+					<vbox align="center" width="100%">
+						<div align="center" id="divVideo" width="100%">
+							<!--include id="include">			
+							</include-->
+							<html id="videoHtml"
+								tooltiptext="Recurso audiovisual en proceso de marcación.">
+								<attribute name="content">
+								</attribute>
+							</html>
+						</div>
+						<separator />
+						<div align="center">
+							<charts id="chartSegmentos"
+								type="columnrange" inverted="true" title="Segmentos descritos" />
+						</div>
+					</vbox>
+				</div>
+			</groupbox>
+			<!--splitter collapse="before" />
+			<div id="divVerXML">
+				<timer id="tmpVerXML" delay="5000" repeats="true"></timer>
+				<textbox id="txtVerXML" multiline="true" readonly="false" />
+			</div-->
+		</hbox>
+		<!--separator/>
+		<div align="center" width="100%">
+			<button id="btnTerminar" label="Terminar descripción" image="/imgs/okP.png" hoverImage="/imgs/okOver.png"/>
+			<button label="Cancelar descripción" image="/imgs/cerrarP.png" hoverImage="/imgs/cerrarOver.png"/>
+        </div-->
+	</window>
+</zk>

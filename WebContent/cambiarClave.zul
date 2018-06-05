@@ -1,0 +1,39 @@
+<?page title="Gestionar contraseña" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="winCambiarClave" title="Cambiar Clave"
+		apply="${CambiarClaveCtl}" border="normal" width="350px"
+		position="center" mode="modal" closable="true">
+
+		<vbox align="center" width="100%">
+			<hbox id="hbxSuperior" width="300px" />
+			<hbox align="center" pack="start" width="300px">
+				<label value="*" style="color:red" />
+				<label id="lblUsuario" value="Usuario" />
+			</hbox>
+			<textbox id="txtUsuario" width="300px" />
+			<separator />
+			<hbox align="center" pack="start" width="300px">
+				<label value="*" style="color:red" />
+				<label id="lblClaveActual" value="Clave Actual" />
+			</hbox>
+			<textbox id="txtClaveActual" type="password" width="300px" />
+			<separator />
+			<hbox align="center" pack="start" width="300px">
+				<label value="*" style="color:red" />
+				<label id="lblClaveNueva" value="Clave Nueva" />
+			</hbox>
+			<textbox id="txtClaveNueva" type="password" width="300px" />
+			<separator />
+			<hbox align="center" pack="start" width="300px">
+				<label value="*" style="color:red" />
+				<label id="lblClaveConfirmar" value="Confirmar Clave" />
+			</hbox>
+			<textbox id="txtClaveConfirmar" type="password"
+				width="300px" />
+			<separator />
+			<button id="btnAceptarClave" label="Aceptar" />
+			<separator />
+		</vbox>
+		
+	</window>
+</zk>

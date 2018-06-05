@@ -1,0 +1,190 @@
+<?page title="Ayuda" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="Ayuda" border="normal" width="710px" height="600px"
+		closable="true">
+		<caption>
+		<!--toolbarbutton id="btnPrintHelp" image="/imgs/print.png" tooltiptext="Descargar ayuda">
+		<attribute name="onClick"><![CDATA[
+        Filedownload.save("/file_handling/EduTVAhelp.pdf", null);
+    ]]></attribute>
+		</toolbarbutton-->
+		</caption>
+		<div width="100%" height="100%" style="overflow:auto;"
+			align="center">
+			<div width="95%" align="right">
+			<toolbarbutton id="btnPrintHelp" image="/imgs/pdf.png" tooltiptext="Descargar ayuda" height="100%" >
+		<attribute name="onClick"><![CDATA[
+        Filedownload.save("/file_handling/EduTVAhelp.pdf", null);
+    ]]></attribute>
+		</toolbarbutton>
+		</div>
+			<label
+				value="EduTVA es un perfil de aplicación desarrollado por la Universidad del Cauca y basado en el esquema de metadatos TVAnytime."
+				style="text-align:justify; display:block;" width="670px">
+			</label>
+			<separator />
+			<label
+				value="Esta herramienta le permitirá describir, por medio de EduTVA, los aspectos educativos de un contenido audiovisual (y segmentos del mismo) que ha sido creado para un contexto televisivo. Su objetivo principal es evaluar si los metadatos de carácter educativo definidos por el perfil de aplicación son útiles para describir las características educativas de un recurso en el contexto de la televisión digital."
+				style="text-align:justify; display:block;" width="670px">
+			</label>
+			<separator />
+			<label
+				value="Se aclara que todos los metadatos que describen al recurso de una manera general se encuentran predeterminados, pues no se tiene la intención de evaluar su utilidad, sin embargo, usted puede cambiar estos valores respetando aquellos que son obligatorios."
+				style="text-align:justify; display:block;" width="670px">
+			</label>
+			<separator />
+			<div align="left">
+			<label value="Cuando termine de describir el recurso, de click en el botón"></label>
+			<image src="/imgs/okP.png"></image>
+			<label value="para guardar." style="text-align:justify;"></label>
+			<separator/>
+			<label value="Recuerde que todos los campos obligatorios estarán antecedidos por el símbolo" width="670px"></label>
+			<label value="*" style="color:red" ></label>
+			<label value=". Si necesita más información acerca de cada campo, ubique el cursor encima de su etiqueta."></label>
+			</div>
+			<separator />
+			<label
+				value="A continuación se encuentra la descripción de los metadatos educativos y sus clasificaciones:"
+				style="text-align:justify; display:block;" width="670px">
+			</label>
+			<separator />
+			<label value="Recurso educativo:"
+				style="font-weight:bold; color:#0B3861; text-align:justify; display:block;"
+				width="670px">
+			</label>
+			<label value="En esta clasificación se encuentran los metadatos que permiten definir el tipo de recurso educativo que se está marcando. Los metadatos son:"
+				style="text-align:justify; display:block;"
+				width="670px">
+			</label>
+			<hbox width="670px">
+				<image src="/imgs/bullet_blue.png" />
+				<a label="Tipo de interactividad">
+					<attribute name="onClick"><![CDATA[
+						Messagebox.show("Modo de aprendizaje soportado por el recurso.\n\nLos posibles valores son:\n-Activa: el aprendizaje se produce cuando el televidente participa activamente con el recurso, estimulando su pensamiento crítico y aprendizaje autónomo, es decir, reflexiona acerca del contenido y realiza actividades durante o después de visualizarlo.\n\n-Expositiva: el conocimiento se transmite y expone a medida que avanza el contenido.\n\n-Mixta: activa y expositiva.",
+								"Tipo de interactividad", Messagebox.OK, Messagebox.INFORMATION);
+					]]></attribute>
+				</a>
+			</hbox>
+			<hbox width="670px">
+				<image src="/imgs/bullet_blue.png" />
+				<a label="Tipo de recurso" width="670px">
+					<attribute name="onClick"><![CDATA[
+						Messagebox.show("Los tipos predominantes que caracterizan el recurso desde el punto de vista educativo.\n\nPor ejemplo: Un capítulo de la serie Mithbusters  realiza un experimento relacionado con la cancelación de momentos de dos fuerzas, por lo tanto el tipo de recurso es: experimento.",
+								"Tipo de recurso", Messagebox.OK, Messagebox.INFORMATION);
+					]]></attribute>
+				</a>
+			</hbox>
+			<hbox width="670px">
+				<image src="/imgs/bullet_blue.png" />
+				<a label="Uso educativo" width="670px">
+					<attribute name="onClick"><![CDATA[
+						Messagebox.show("Es el propósito educativo del recurso audiovisual e indica el uso que se le puede dar al recurso dentro de un proceso educativo.\n\nPara determinar el uso educativo, usted debe preguntarse ¿para qué usaría este recurso audiovisual dentro de un proceso de enseñanza?, algunas posibles respuestas serán: para dejar una tarea, para que el estudiante realice una actividad, para evaluar al estudiante, etc.\n\nPor ejemplo:  Un capítulo de Art Attack enseña cómo realizar un dibujo con profundidad invitando al televidente a realizar el dibujo. Esto quiere decir que el propósito educativo del recurso es asignarle una tarea o actividad al usuario y por lo tanto su uso educativo puede ser: tarea o actividad.",
+								"Uso educativo", Messagebox.OK, Messagebox.INFORMATION);
+					]]></attribute>
+				</a>
+			</hbox>
+			<separator />
+			<label value="Contexto educativo:"
+				style="font-weight:bold; color:#0B3861; text-align:justify; display:block;"
+				width="670px">
+			</label>
+			<label value="Los metadatos que hacen parte de esta clasificación describen el entorno educativo donde puede ser utilizado el recurso. Los metadatos son:"
+				style="text-align:justify; display:block;"
+				width="670px">
+			</label>
+			<hbox width="670px">
+				<image src="/imgs/bullet_blue.png" />
+				<a label="Contexto">
+					<attribute name="onClick"><![CDATA[
+						Messagebox.show("Entornos de una secuencia educativa en los que el recurso puede ser utilizado.",
+								"Contexto", Messagebox.OK, Messagebox.INFORMATION);
+					]]></attribute>
+				</a>
+			</hbox>
+			<separator />
+			<label value="Audiencia objetivo:"
+				style="font-weight:bold; color:#0B3861; text-align:justify; display:block;"
+				width="670px">
+			</label>
+			<label value="Contiene los metadatos que definen la audiencia a quien va dirigido el recurso educativo. Los metadatos son:"
+				style="text-align:justify; display:block;"
+				width="670px">
+			</label>
+			<hbox width="670px">
+				<image src="/imgs/bullet_blue.png" />
+				<a label="Rol del usuario objetivo">
+					<attribute name="onClick"><![CDATA[
+						Messagebox.show("Usuario(s) principal(es) para el(los) que ha sido creado el recurso.",
+								"Rol del usuario objetivo", Messagebox.OK, Messagebox.INFORMATION);
+					]]></attribute>
+				</a>
+			</hbox>
+			<hbox width="670px">
+				<image src="/imgs/bullet_blue.png" />
+				<a label="Rango de edad típico">
+					<attribute name="onClick"><![CDATA[
+						Messagebox.show("Grupos de edades de la audiencia objetivo.",
+								"Rango de edad típico", Messagebox.OK, Messagebox.INFORMATION);
+					]]></attribute>
+				</a>
+			</hbox>
+			<hbox width="670px">
+				<image src="/imgs/bullet_blue.png" />
+				<a label="Idioma">
+					<attribute name="onClick"><![CDATA[
+						Messagebox.show("Idiomas de la audiencia objetivo.",
+								"Idioma", Messagebox.OK, Messagebox.INFORMATION);
+					]]></attribute>
+				</a>
+			</hbox>
+			<separator />
+			<label value="Anotaciones:"
+				style="font-weight:bold; color:#0B3861; text-align:justify; display:block;"
+				width="670px">
+			</label>
+			<label value="Metadatos que contienen datos, aclaraciones o comentarios acerca del recurso educativo. Los metadatos son:"
+				style="text-align:justify; display:block;"
+				width="670px">
+			</label>
+			<hbox width="670px">
+				<image src="/imgs/bullet_blue.png" />
+				<a label="Anotaciones">
+					<attribute name="onClick"><![CDATA[
+						Messagebox.show("Comentarios relacionados con el recurso educativo que permitan establecer sugerencias de uso, descripciones del recurso desde el punto de vista educativo, etc.",
+								"Anotaciones", Messagebox.OK, Messagebox.INFORMATION);
+					]]></attribute>
+				</a>
+			</hbox>
+			<separator />
+			<label value="Resultados educativos:"
+				style="font-weight:bold; color:#0B3861; text-align:justify; display:block;"
+				width="670px">
+			</label>
+			<label value="Metadatos que exponen lo que un estudiante debería saber, entender o poder hacer al interactuar con el recurso educativo. Los metadatos son:"
+				style="text-align:justify; display:block;"
+				width="670px">
+			</label>
+			<hbox width="670px">
+				<image src="/imgs/bullet_blue.png" />
+				<a label="Competencias alcanzadas">
+					<attribute name="onClick"><![CDATA[
+						Messagebox.show("Habilidades de pensamiento y objetivos logrados por medio de la interacción con el recurso. Los valores que se pueden asignar están pre-establecidos por la Taxonomía Revisada de Bloom.\n\nPor ejemplo: Después de visualizar un capítulo de Mentes Brillantes donde se narra la historia de la creación de la primera bomba nuclear durante la segunda guerra mundial centrándose en los esfuerzos paralelos de Robert Oppenheimer y Werner Heisenberg, el estudiantes podrá RECORDAR la historia y los personajes implicados, además de RESUMIR lo hechos.\n\nLas competencias representan la actividad provocada en el usuario de destino, es decir, el/los procesos cognitivos implicados en el proceso de aprendizaje.",
+								"Competencias alcanzadas", Messagebox.OK, Messagebox.INFORMATION);
+					]]></attribute>
+				</a>
+			</hbox>
+			<separator />
+			<label
+				value="Tenga en cuenta que la televisión educativa se encarga de producir, programar y transmitir contenidos de carácter educativo con el fin de influir en el conocimiento, las actitudes y los valores del televidente. La televisión digital por medio de los diversos servicios interactivos que puede soportar, permite una televisión educativa más amplia que facilita el acceso de manera interactiva a los contenidos y materiales de aprendizaje, o crea procesos educativos asociados a la televisión para ampliar los contenidos. Tambiém es importante resaltar que en este contexto, el principal componente educativo es el contenido audiovisual."
+				style="text-align:justify; display:block;" width="670px">
+			</label>
+			<separator/>
+			<separator bar="true"/>
+			<label
+				value="Los recursos audiovisuales utilizados por la herramienta no son propiedad de la Universidad del Cauca y han sido descargados de sitios web destinados a compartir videos, dichos recursos están siendo utilizados solo con carácter educativo y se declara que no se infringen los derechos de autor de forma intencionada."
+				style="color:#610B0B; text-align:justify; display:block;"
+				width="670px">
+			</label>
+		</div>
+	</window>
+</zk>

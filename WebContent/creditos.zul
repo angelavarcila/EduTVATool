@@ -1,0 +1,78 @@
+<?page title="Créditos" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="winCredits" title="Créditos" border="normal"
+		minimizable="false" closable="true" width="500px" apply="${CreditoCtl}">
+
+		<style>
+			div.z-grid { border:none; } tr.z-row td.z-row-inner,
+			tr.z-row .z-cell { border-style:none; padding: 0; }
+			.z-grid-odd > .z-row-inner, .z-grid-odd > .z-cell {
+			background:none; }
+		</style>
+		<hbox>
+			<div>
+				<listbox id="lstbxCredits" height="239px" multiple="true" checkmark="true">
+					<auxhead>
+						<auxheader colspan="5">
+							<toolbarbutton id="btnAddCredit"
+								image="/imgs/add24x24.png" tooltiptext="Nuevo crédito"
+								height="27px" width="29px" />
+							<toolbarbutton id="btnDeleteCredit"
+								image="/imgs/remove24x24.png" tooltiptext="Eliminar crédito"
+								height="27px" width="29px" />
+						</auxheader>
+					</auxhead>
+					<listhead>
+						<listheader align="center" width="40px"/>
+						<listheader label="Persona/Organización" width="140px"/>
+						<listheader label="Nombre" width="100px"/>
+						<listheader label="Rol" width="100px"/>
+						<listheader label="Personaje" width="100px"/>
+					</listhead>
+				</listbox>
+			</div>
+
+			<div id="divNewCredit" align="center" visible="false">
+				<groupbox width="320px">
+				<div width="100%" align="left">
+				<label value="Tenga en cuenta: Un crédito hace referencia a una persona u organización que ha contribuido en la creación del recurso audiovisual. El rol de una persona puede estar relacionado con un personaje."/>
+				<separator/>
+				<radiogroup id="rdgrpPrsnOrgn" tooltiptext="Seleccione si el crédito hará referencia a una persona u organización">
+					<radio id="rdbtnPrsn" label="Persona" value="P" selected="true"/>
+					<radio id="rdbtnOrgn" label="Organización" value="O"/>
+				</radiogroup>
+				</div>
+				<grid>
+					<columns>
+						<column width="150px"/>
+						<column width="150px"/>
+					</columns>
+					<rows>
+						<row tooltiptext="Nombre de la persona u organización">
+							<div>
+								<label value="*" style="color:red" />
+								<label value="Nombre:" />
+							</div>
+							<textbox id="txtNmbr" width="100%"/>
+						</row>
+						<row tooltiptext="Rol que desempeñó la persona u organización durante la creación del recurso">
+							<div>
+								<label value="*" style="color:red" />
+								<label value="Rol:"/>
+							</div>
+							<combobox id="cbxCreditsSelRol" width="100%"/>
+						</row>
+						<row tooltiptext="Personaje interpretado o relacionado con la persona. Por ejemplo: Robert Downey (persona) es el actor (rol) que interpreta a Tony Stark (personaje) en Iron Man (contenido que se está describiendo)">
+							<label value="Personaje:"/>
+							<textbox id="txtPrsnj" width="100%"/>
+						</row>
+					</rows>
+				</grid>
+				<separator/>
+				<button id="btnAceptar" label="Aceptar" width="80px"/>
+				<button id="btnCancelar" label="Cancelar" width="80px"/>
+				</groupbox>
+			</div>
+		</hbox>
+	</window>
+</zk>
