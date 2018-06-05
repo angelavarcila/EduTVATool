@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/10/2014 10:49:12 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="co.com.edutva.bd.DscrRecurso" table="dscr_recurso">
+        <id name="idDscrRecurso" type="java.lang.Integer">
+            <column name="id_dscr_recurso" />
+              <generator class="increment"/>
+              <!--generator class="sequence">
+	           <param name="sequence">id_dscr_recurso</param>
+	        </generator-->
+        </id>
+        <many-to-one name="recurso" class="co.com.edutva.bd.Recurso" fetch="join">
+            <column name="id_recurso" />
+        </many-to-one>
+        <many-to-one name="usuario" class="co.com.edutva.bd.Usuario" fetch="join">
+            <column name="id_usuario" />
+        </many-to-one>
+        <property name="rutaDscrRecurso" type="java.lang.String">
+            <column name="ruta_dscr_recurso" />
+        </property>
+         <property name="fnlDscrRecurso" type="java.lang.Boolean">
+            <column name="fnl_dscr_recurso" />
+        </property>
+    </class>
+</hibernate-mapping>

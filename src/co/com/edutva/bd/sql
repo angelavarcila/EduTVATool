@@ -1,0 +1,195 @@
+-- DROP DATABASE "EduTVA";
+
+CREATE DATABASE "EduTVA"
+  WITH OWNER = postgres
+       ENCODING = 'UTF8'
+       TABLESPACE = pg_default
+       LC_COLLATE = 'es_CO.UTF-8'
+       LC_CTYPE = 'es_CO.UTF-8'
+       CONNECTION LIMIT = -1;
+
+-- Table: permiso
+
+-- DROP TABLE permiso;
+
+CREATE TABLE permiso
+(
+  id_permiso integer NOT NULL,
+  nmbr_permiso text,
+  mn_permiso text,
+  dscrpcn_permiso text,
+  fchrg_permiso date,
+  CONSTRAINT id_permiso PRIMARY KEY (id_permiso)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE permiso
+  OWNER TO postgres;
+
+  
+ -- Table: recurso
+
+-- DROP TABLE recurso;
+
+CREATE TABLE recurso
+(
+  id_recurso integer NOT NULL,
+  nmbr_recurso text,
+  rta_recurso text,
+  dscrpcn_recurso text,
+  dscrto boolean,
+  cmprtdo boolean,
+  fchrg_recurso date,
+  usrrg_recurso text,
+  CONSTRAINT "ID_RECURSO" PRIMARY KEY (id_recurso)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE recurso
+  OWNER TO postgres;
+ 
+ 
+ -- Table: rol
+
+-- DROP TABLE rol;
+
+CREATE TABLE rol
+(
+  id_rol integer NOT NULL,
+  nmbr_rol text,
+  dscrpcn_rol text,
+  fchrg_rol date,
+  CONSTRAINT id_rol PRIMARY KEY (id_rol)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE rol
+  OWNER TO postgres;
+ 
+ 
+ -- Table: rol_permiso
+
+-- DROP TABLE rol_permiso;
+
+CREATE TABLE rol_permiso
+(
+  id_rol_permiso integer NOT NULL,
+  rol integer NOT NULL,
+  permiso integer NOT NULL,
+  CONSTRAINT id_rol_permiso PRIMARY KEY (id_rol_permiso),
+  CONSTRAINT permiso FOREIGN KEY (permiso)
+      REFERENCES permiso (id_permiso) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT rol FOREIGN KEY (rol)
+      REFERENCES rol (id_rol) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE rol_permiso
+  OWNER TO postgres;
+
+-- Index: "fki_permisoAsociado"
+
+-- DROP INDEX "fki_permisoAsociado";
+
+CREATE INDEX "fki_permisoAsociado"
+  ON rol_permiso
+  USING btree
+  (permiso);
+
+-- Index: fki_rol
+
+-- DROP INDEX fki_rol;
+
+CREATE INDEX fki_rol
+  ON rol_permiso
+  USING btree
+  (rol);
+
+ -- Table: usuario
+
+-- DROP TABLE usuario;
+
+CREATE TABLE usuario
+(
+  id_usuario integer NOT NULL,
+  nmbr_usuario text,
+  aplld_usuario text,
+  usuario text,
+  psswrd_usuario text,
+  fchrg_usuario date,
+  CONSTRAINT "ID_USUARIO" PRIMARY KEY (id_usuario)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE usuario
+  OWNER TO postgres;
+ 
+ 
+ -- Table: usuario_rol
+
+-- DROP TABLE usuario_rol;
+
+CREATE TABLE usuario_rol
+(
+  id_usuario_rol integer NOT NULL,
+  usuario integer,
+  rol integer,
+  CONSTRAINT id_usuario_rol PRIMARY KEY (id_usuario_rol),
+  CONSTRAINT rol FOREIGN KEY (rol)
+      REFERENCES rol (id_rol) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT usuario FOREIGN KEY (usuario)
+      REFERENCES usuario (id_usuario) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE usuario_rol
+  OWNER TO postgres;
+
+-- Index: "fki_rolAsociado"
+
+-- DROP INDEX "fki_rolAsociado";
+
+CREATE INDEX "fki_rolAsociado"
+  ON usuario_rol
+  USING btree
+  (rol);
+
+-- Index: fki_usuario
+
+-- DROP INDEX fki_usuario;
+
+CREATE INDEX fki_usuario
+  ON usuario_rol
+  USING btree
+  (usuario);
+ 
+ 
+ -- Table: vrbl_sstm
+
+-- DROP TABLE vrbl_sstm;
+
+CREATE TABLE vrbl_sstm
+(
+  id_vrbl_sstm integer NOT NULL,
+  nmbr_vrbl_sstm text,
+  vlr_vrbl_sstm text,
+  dscrpcn_vrbl_sstm text,
+  fchrg_vrbl_sstm date,
+  CONSTRAINT id_vrbl_sstm PRIMARY KEY (id_vrbl_sstm)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE vrbl_sstm
+  OWNER TO postgres;
+ 

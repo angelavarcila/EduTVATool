@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 8/08/2014 02:42:55 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="co.com.edutva.bd.Rol" table="rol">
+        <id name="idRol" type="java.lang.Integer">
+            <column name="id_rol" />
+            <generator class="sequence">
+	           <param name="sequence">id_rol</param>
+	        </generator>
+        </id>
+        <property name="nmbrRol" type="java.lang.String">
+            <column name="nmbr_rol" />
+        </property>
+        <property name="dscrpcnRol" type="java.lang.String">
+            <column name="dscrpcn_rol" />
+        </property>
+        <property name="fchrgRol" type="java.util.Date">
+            <column name="fchrg_rol" />
+        </property>
+    </class>
+</hibernate-mapping>

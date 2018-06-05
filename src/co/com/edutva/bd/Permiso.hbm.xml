@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 8/08/2014 03:31:14 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="co.com.edutva.bd.Permiso" table="permiso">
+        <id name="idPermiso" type="java.lang.Integer">
+            <column name="id_permiso" />
+            <generator class="sequence">
+	           <param name="sequence">id_permiso</param>
+	        </generator>
+        </id>
+        <property name="nmbrPermiso" type="java.lang.String">
+            <column name="nmbr_permiso" />
+        </property>
+        <property name="mnPermiso" type="java.lang.String">
+            <column name="mn_permiso" />
+        </property>
+        <property name="dscrpcnPermiso" type="java.lang.String">
+            <column name="dscrpcn_permiso" />
+        </property>
+        <property name="fchrgPermiso" type="java.util.Date">
+            <column name="fchrg_permiso" />
+        </property>
+    </class>
+</hibernate-mapping>

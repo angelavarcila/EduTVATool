@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 5/08/2014 11:31:57 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="co.com.edutva.bd.Usuario" table="usuario">
+        <id name="idUsuario" type="java.lang.Integer">
+            <column name="id_usuario" />
+            <generator class="sequence">
+	           <param name="sequence">id_usuario</param>
+	        </generator>
+        </id>
+        <property name="nmbrUsuario" type="java.lang.String">
+            <column name="nmbr_usuario" />
+        </property>
+        <property name="aplldUsuario" type="java.lang.String">
+            <column name="aplld_usuario" />
+        </property>
+        <property name="usuario" type="java.lang.String">
+            <column name="usuario" not-null="true" />
+        </property>
+        <property name="psswrdUsuario" type="java.lang.String">
+            <column name="psswrd_usuario" not-null="true" />
+        </property>
+        <property name="emailUsuario" type="java.lang.String">
+            <column name="email_usuario"/>
+        </property>
+        <property name="fchrgUsuario" type="java.util.Date">
+            <column name="fchrg_usuario" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

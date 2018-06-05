@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/10/2014 10:40:30 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="co.com.edutva.bd.Recurso" table="RECURSO">
+        <id name="idRecurso" type="java.lang.Integer">
+            <column name="id_recurso" />
+            <generator class="sequence">
+	           <param name="sequence">id_recurso</param>
+	        </generator>
+        </id>
+        <property name="nmbrRecurso" type="java.lang.String">
+            <column name="nmbr_recurso" />
+        </property>
+        <property name="rtaRecurso" type="java.lang.String">
+            <column name="rta_recurso" />
+        </property>
+        <property name="dscrpcnRecurso" type="java.lang.String">
+            <column name="dscrpcn_recurso" />
+        </property>
+        <property name="isDscrto" type="java.lang.Boolean">
+            <column name="dscrto" />
+        </property>
+        <property name="isCmprtdo" type="java.lang.Boolean">
+            <column name="cmprtdo" />
+        </property>
+        <property name="fchrgRecurso" type="java.util.Date">
+            <column name="fchrg_recurso" />
+        </property>
+        <property name="usrrgRecurso" type="java.lang.String">
+            <column name="usrrg_recurso" />
+        </property>
+        <property name="archvRecurso" type="java.lang.String">
+            <column name="archv_recurso" />
+        </property>
+         <property name="imgnRecurso" type="java.lang.String">
+            <column name="imgn_recurso" />
+        </property>
+    </class>
+</hibernate-mapping>
