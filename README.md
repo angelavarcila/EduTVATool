@@ -2,7 +2,7 @@
 Source code of EduTVATool (Tool for marking up audiovisual educational content)
 
 
-You have to add and configure the following system variables in the table "":
+You have to add and configure the following system variables in the table "vrbl_sstm":
 - url_edutva -> application deployment url, e.g. http://10.10.10.10:8080/EduTVA
 - url_videos -> url where the videos are hosted, e.g http://www.urlvideos.co/VideosEduTVA
 - url_dscrpcn -> path where the user descriptor files will be stored, e.g /home/path/descriptorsfiles
