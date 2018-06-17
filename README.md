@@ -3,11 +3,28 @@ Source code of EduTVATool (Tool for marking up audiovisual educational content)
 
 You have to add and configure the following system variables in the table "vrbl_sstm" of data base:
 
-| nmbr_vrbl_sstm | vlr_vrbl_sstm |
+| *nmbr_vrbl_sstm* | *vlr_vrbl_sstm* |
 
-| ----- | ---- |
+| ---------------- | --------------- |
 
-| CONTENIDO COLUMNA 1 | CONTENIDO COLUMNA 2 |
+| url_edutva       |          |
+| url_videos       |  |
+| url_dscrpcn      |  |
+| CRID          |  |
+| ruta_ClassificationScheme  |  |
+
+
+
+
+|   |  |
+|   |  |
+|   |  |
+|   |  |
+|   |  |
+|   |  |
+|   |  |
+|   |  |
+|   |  |
 
 - url_edutva -> application deployment url, e.g. http://10.10.10.10:8080/EduTVA
 - url_videos -> url where the videos are hosted, e.g http://www.urlvideos.co/VideosEduTVA
