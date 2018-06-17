@@ -3,15 +3,15 @@ Source code of EduTVATool (Tool for marking up audiovisual educational content)
 
 
 You have to add and configure the following system variables in the table "":
-- url_edutva ->
-- url_videos ->
-- url_dscrpcn ->
-- CRID ->
-- ruta_ClassificationScheme ->
-- ruta_xsd ->
+- url_edutva -> application deployment url, e.g. http://10.10.10.10:8080/EduTVA
+- url_videos -> url where the videos are hosted, e.g http://www.urlvideos.co/VideosEduTVA
+- url_dscrpcn -> path where the user descriptor files will be stored, e.g /home/path/descriptorsfiles
+- CRID -> content reference identifier
+- ruta_ClassificationScheme -> directory path that contains the classification schemes files used by the tool
+- ruta_xsd -> path where the .xsd EduTVA file is located  /home/pathedutvav1/tva2v161_edutva_v1.xsd 
 	
 Name of Classification Scheme Files:
-- intended_educational_user
+- intended_educational_user -> e.g. IntendedEducationalUserCS_es.xml
 - educational_use
 - role
 - content
